@@ -1,3 +1,6 @@
+# Works centering without a custom font
+
+
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas

@@ -1,5 +1,6 @@
 # Works with custom font and centers around the center value specified.
 
+names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler']
 
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
@@ -48,11 +49,15 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 
 
 # Example usage
-input_pdf_path = "blankDoc.pdf"
-output_pdf_path = "output3.pdf"
-name = 'Avi Bandi'
-center_point = (310, 600)  # Example center point coordinates
-add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
-print("Done")
-add_words_to_pdf("output3.pdf", "output3.pdf", "Varun Nagapakar", (310, 300))
-print("done")
+# input_pdf_path = "blankDoc.pdf"
+# output_pdf_path = "output3.pdf"
+# name = 'Avi Bandi'
+# center_point = (310, 600)  # Example center point coordinates
+# add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+# print("Done")
+# add_words_to_pdf("output3.pdf", "output3.pdf", "Varun Nagapakar", (310, 300))
+# print("done")
+
+for each in names:
+    add_words_to_pdf("blankDoc.pdf", each.split()[1]+"Lettering", each, (310, 600))
+    print("done")

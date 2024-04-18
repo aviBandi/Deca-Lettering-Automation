@@ -59,5 +59,5 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 # print("done")
 
 for each in names:
-    add_words_to_pdf("blankDoc.pdf", each.split()[1]+"Lettering", each, (310, 600))
+    add_words_to_pdf("blankDoc.pdf", each.split()[1]+"Lettering"+".pdf", each, (310, 600))
     print("done")

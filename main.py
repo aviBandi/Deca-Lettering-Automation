@@ -1,22 +1,29 @@
-# Works centering without a custom font
+# Works with custom font and centers around the center value specified.
 
 
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 import io
 
-def add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
+def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
+    fontSize = 30
     reader = PdfReader(input_pdf_path)
     writer = PdfWriter()
-    fontSize = 25
+
+    # Register the custom gothic font
+    custom_gothic_font_path = "gothicText.ttf"  # Replace with the path to your gothic font file
+    pdfmetrics.registerFont(TTFont('Gothic', custom_gothic_font_path))
+
     for page in reader.pages:
         packet = io.BytesIO()
         can = canvas.Canvas(packet, pagesize=letter)
 
         # Set typography options
-        can.setFont("Courier-Bold", fontSize)  # Set font family and size
+        can.setFont("Gothic", fontSize)  # Set custom gothic font family and size
         can.setFillColor(colors.black)  # Set text color
 
         # Calculate text width and height
@@ -42,7 +49,10 @@ def add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 
 # Example usage
 input_pdf_path = "blankDoc.pdf"
-output_pdf_path = "output2.pdf"
-name = 'Varun Nagapakar'
-center_point = (300, 300)  # Example center point coordinates
-add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+output_pdf_path = "output3.pdf"
+name = 'Avi Bandi'
+center_point = (310, 600)  # Example center point coordinates
+add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+print("Done")
+add_words_to_pdf("output3.pdf", "output3.pdf", "Varun Nagapakar", (310, 300))
+print("done")

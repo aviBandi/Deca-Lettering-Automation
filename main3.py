@@ -9,7 +9,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 import io
 
-def add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
+def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
+    fontSize = 60
     reader = PdfReader(input_pdf_path)
     writer = PdfWriter()
 
@@ -22,12 +23,12 @@ def add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
         can = canvas.Canvas(packet, pagesize=letter)
 
         # Set typography options
-        can.setFont("Gothic", 75)  # Set custom gothic font family and size
+        can.setFont("Gothic", fontSize)  # Set custom gothic font family and size
         can.setFillColor(colors.black)  # Set text color
 
         # Calculate text width and height
         text_width = can.stringWidth(name)
-        text_height = 75  # Font size in this case
+        text_height = fontSize  # Font size in this case
 
         # Calculate starting coordinates for centering text
         x = center_point[0] - text_width / 2
@@ -49,7 +50,9 @@ def add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 # Example usage
 input_pdf_path = "blankDoc.pdf"
 output_pdf_path = "output3.pdf"
-name = 'Avi'
+name = 'Avi Bandi'
 center_point = (300, 600)  # Example center point coordinates
-add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+print("Done")
+add_words_to_pdf("output3.pdf", "output3.pdf", "Varun Nagapakar", (300, 300))
 print("done")

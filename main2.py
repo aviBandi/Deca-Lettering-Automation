@@ -43,3 +43,11 @@ output_pdf_path = "output2.pdf"
 name = 'Varun Nagapakar'
 center_point = (300, 300)  # Example center point coordinates
 add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+
+input_pdf_path = "blankDoc.pdf"
+output_pdf_path = "output.pdf"
+name = 'Varun'
+center_point = (300, 400)  # Example center point coordinates
+add_names_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
+
+# The text will be centered around the point (400, 400) on each page of the input PDF.

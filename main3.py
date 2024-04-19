@@ -1,5 +1,6 @@
 # Works with custom font and centers around the center value specified.
 
+names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler']
 
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
@@ -8,9 +9,15 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 import io
+import os
+
+output_folder = "letteringPDFs"
+
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
 def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
-    fontSize = 60
+    fontSize = 30
     reader = PdfReader(input_pdf_path)
     writer = PdfWriter()
 
@@ -43,16 +50,12 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
         page.merge_page(new_page.pages[0])
         writer.add_page(page)
 
-    with open(output_pdf_path, "wb") as f:
+    with open(os.path.join(output_folder, output_pdf_path), "wb") as f:
         writer.write(f)
 
 
-# Example usage
-input_pdf_path = "blankDoc.pdf"
-output_pdf_path = "output3.pdf"
-name = 'Avi Bandi'
-center_point = (300, 600)  # Example center point coordinates
-add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point)
-print("Done")
-add_words_to_pdf("output3.pdf", "output3.pdf", "Varun Nagapakar", (300, 300))
-print("done")
+for each in names:
+    add_words_to_pdf("blankDoc.pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", each, (310, 600))
+    add_words_to_pdf(os.path.join(output_folder,each.split()[1]+each.split()[0])+"Lettering"+".pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (310, 300))
+
+    print("done")

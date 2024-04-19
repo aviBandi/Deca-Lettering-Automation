@@ -11,7 +11,9 @@ from reportlab.lib import colors
 import io
 
 def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
+
     fontSize = 30
+
     reader = PdfReader(input_pdf_path)
     writer = PdfWriter()
 
@@ -48,6 +50,25 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
         writer.write(f)
 
 
+
+for each in names:
+    add_words_to_pdf("blankDoc.pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", each, (310, 600))
+    add_words_to_pdf(each.split()[1]+each.split()[0]+"Lettering"+".pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (310, 300))
+
+    print("Document created for: " +each)
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Example usage
 # input_pdf_path = "blankDoc.pdf"
 # output_pdf_path = "output3.pdf"
@@ -57,9 +78,3 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 # print("Done")
 # add_words_to_pdf("output3.pdf", "output3.pdf", "Varun Nagapakar", (310, 300))
 # print("done")
-
-for each in names:
-    add_words_to_pdf("blankDoc.pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", each, (310, 600))
-    add_words_to_pdf(each.split()[1]+each.split()[0]+"Lettering"+".pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (310, 300))
-
-    print("done")

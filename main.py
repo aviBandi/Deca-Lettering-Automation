@@ -22,7 +22,7 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
     writer = PdfWriter()
 
     # Register the custom gothic font
-    custom_gothic_font_path = "gothicText.ttf"  # Replace with the path to your gothic font file
+    custom_gothic_font_path = "data/gothicText.ttf"  # Replace with the path to your gothic font file
     pdfmetrics.registerFont(TTFont('Gothic', custom_gothic_font_path))
 
     for page in reader.pages:
@@ -55,6 +55,6 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 
 
 for each in names:
-    add_words_to_pdf("blankDoc.pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", each, (310, 600))
+    add_words_to_pdf("data/blankDoc.pdf", each.split()[1] + each.split()[0] + "Lettering" + ".pdf", each, (310, 600))
     add_words_to_pdf(os.path.join(output_folder,each.split()[1]+each.split()[0])+"Lettering"+".pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (310, 300))
     print("Letter created for: ", each)

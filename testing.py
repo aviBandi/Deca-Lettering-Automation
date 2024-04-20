@@ -1,6 +1,14 @@
 # Works with custom font and centers around the center value specified.
 
-names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler']
+names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler', "Rahul Billakanti", "Paul Kimbler", "Avinash Bandi",
+         "Lexi Shasher", "Michelle Jacklitch", "Michael Lindsay", "Rowan Huh", "Aman Syaed", "Cole Paul Ledman",
+         "Prohitt Ram Kumar", "Scott Gengler", "Brooks Gengler", "Kavin Gunnalseeland", "Viswas Valla",
+         "Rukshan Rajan", "Dilshan Rajan", "Jack Berge", "Daniel Salantino", "Aaron Beduhn", "Tika Kude",
+         "Jacklitch Kude", "Fan Boy" "Liam Hall", "Drew Nepsted", "Will Weber", "Amogh Rajgopal", "Maddy Vickers",
+         "Robyn Van Horn", "Pranav Gangireddy", "Nithya Dharmagari", "Ashwanth Vishwanathan", "Ruan Paunland",
+         "Michael Shumaker"]
+
+print("Letters to generate:", len(names))
 
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
@@ -10,13 +18,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 import io
 import os
+import time
 
-output_folder = "letteringPDFs"
 
-if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
-
-def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
+def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point, rotation_angle=0):
     fontSize = 30
     reader = PdfReader(input_pdf_path)
     writer = PdfWriter()
@@ -41,6 +46,9 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
         x = center_point[0] - text_width / 2
         y = center_point[1] - text_height / 2
 
+        # Rotate the canvas before drawing the text
+        can.rotate(rotation_angle)
+
         # Draw the text
         can.drawString(x, y, name)
         can.save()
@@ -54,8 +62,11 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
         writer.write(f)
 
 
+# Example usage:
 for each in names:
-    add_words_to_pdf("data/blankDoc.pdf", each.split()[1] + each.split()[0] + "Lettering" + ".pdf", each, (310, 600))
-    add_words_to_pdf(os.path.join(output_folder,each.split()[1]+each.split()[0])+"Lettering"+".pdf", each.split()[1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (310, 300))
-
-    print("done")
+    add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each,
+                     (310, 600), rotation_angle=45)
+    add_words_to_pdf(os.path.join(output_folder, each.split()[-1] + each.split()[0]) + "Lettering" + ".pdf",
+                     each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", "Wayzata DECA", (310, 300),
+                     rotation_angle=45)
+    print("Letter created for: ", each)

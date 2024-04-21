@@ -1,15 +1,4 @@
 
-
-
-names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler', "Rahul Billakanti", "Paul Kimbler", "Avinash Bandi",
-         "Lexi Shasher", "Michelle Jacklitch", "Michael Lindsay", "Rowan Huh", "Aman Syaed", "Cole Paul Ledman",
-         "Prohitt Ram Kumar", "Scott Gengler", "Brooks Gengler", "Kavin Gunnalseeland", "Viswas Valla",
-         "Rukshan Rajan", "Dilshan Rajan", "Jack Berge", "Daniel Salantino", "Aaron Beduhn", "Tika Kude",
-         "Jacklitch Kude", "Fan Boy" "Liam Hall", "Drew Nepsted", "Will Weber", "Amogh Rajgopal", "Maddy Vickers",
-         "Robyn Van Horn", "Pranav Gangireddy", "Nithya Dharmagari", "Ashwanth Vishwanathan", "Ruan Paunland",
-         "Michael Shumaker"]
-
-
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase import pdfmetrics
@@ -21,9 +10,14 @@ import os
 import time
 
 
-start_time = time.time()
 
 output_folder = "letteringPDFs"
+
+# Reads in names from text file
+with open("names", "r") as f:
+    names = [line.strip() for line in f]
+
+start_time = time.time()
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)

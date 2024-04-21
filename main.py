@@ -1,4 +1,5 @@
-# Works with custom font and centers around the center value specified.
+
+
 
 names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler', "Rahul Billakanti", "Paul Kimbler", "Avinash Bandi",
          "Lexi Shasher", "Michelle Jacklitch", "Michael Lindsay", "Rowan Huh", "Aman Syaed", "Cole Paul Ledman",
@@ -8,7 +9,6 @@ names = ['Avi Bandi', 'Varun Nagapakar', 'Sai Kimbler', "Rahul Billakanti", "Pau
          "Robyn Van Horn", "Pranav Gangireddy", "Nithya Dharmagari", "Ashwanth Vishwanathan", "Ruan Paunland",
          "Michael Shumaker"]
 
-print("Letters to generate:", len(names))
 
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
@@ -53,8 +53,12 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
         x = center_point[0] - text_width / 2
         y = center_point[1] - text_height / 2
 
+        # Translate canvas to the center of the text
+        can.translate(x + text_width / 2, y + text_height / 2)
+
         # Draw the text
-        can.drawString(x, y, name)
+        can.rotate(90)  # Rotate the canvas by 90 degrees
+        can.drawString(-text_width / 2, -text_height / 2, name)  # Draw text at (-text_width / 2, -text_height / 2) after rotation
         can.save()
 
         packet.seek(0)
@@ -65,13 +69,16 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
     with open(os.path.join(output_folder, output_pdf_path), "wb") as f:
         writer.write(f)
 
+
+
 for each in names:
-    add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each, (310, 600))
-    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (310, 300))
+    add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each, (285, 540))
+    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (373, 540))
+    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", "2023-2024", (430, 540))
     print("Letter created for: ", each)
 
 
 
 end_time = time.time()
 print("\n")
-print("Execution time: ", end_time-start_time, "Seconds")
+print(f"{len(names)} Letters created successfully in {end_time - start_time} seconds.")

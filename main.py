@@ -1,4 +1,3 @@
-
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase import pdfmetrics
@@ -69,13 +68,15 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 
 
 
+
+
+
+# if __name__ == "__main__":
 for each in names:
     add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each, (285, 540))
     add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", club_name, (373, 540))
     add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", school_year, (430, 540))
     print("Letter created for: ", each)
-
-
 
 end_time = time.time()
 print("\n")

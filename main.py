@@ -10,6 +10,10 @@ import os
 import time
 
 
+club_name = "Wayzata Track"
+school_year = "2024-2025"
+
+
 
 output_folder = "letteringPDFs"
 
@@ -67,8 +71,8 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 
 for each in names:
     add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each, (285, 540))
-    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", "Wayzata DECA", (373, 540))
-    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", "2023-2024", (430, 540))
+    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", club_name, (373, 540))
+    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", school_year, (430, 540))
     print("Letter created for: ", each)
 
 

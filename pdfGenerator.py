@@ -25,6 +25,9 @@ start_time = time.time()
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
+def greet():
+    print("hello world")
+
 def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
     fontSize = 30
     reader = PdfReader(input_pdf_path)
@@ -71,13 +74,13 @@ def add_words_to_pdf(input_pdf_path, output_pdf_path, name, center_point):
 
 
 
-# if __name__ == "__main__":
-for each in names:
-    add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each, (285, 540))
-    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", club_name, (373, 540))
-    add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", school_year, (430, 540))
-    print("Letter created for: ", each)
+if __name__ == "__main__":
+    for each in names:
+        add_words_to_pdf("data/letteringDoc.pdf", each.split()[-1] + each.split()[0] + "Lettering" + ".pdf", each, (285, 540))
+        add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", club_name, (373, 540))
+        add_words_to_pdf(os.path.join(output_folder,each.split()[-1]+each.split()[0])+"Lettering"+".pdf", each.split()[-1]+each.split()[0]+"Lettering"+".pdf", school_year, (430, 540))
+        print("Letter created for: ", each)
 
-end_time = time.time()
-print("\n")
-print(f"{len(names)} Letters created successfully in {end_time - start_time} seconds.")
+    end_time = time.time()
+    print("\n")
+    print(f"{len(names)} Letters created successfully in {end_time - start_time} seconds.")
